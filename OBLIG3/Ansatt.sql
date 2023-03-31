@@ -1,6 +1,6 @@
 SET search_path TO oblig3;
 
--- LEGG TIL AVDELING OG PROSJEKT SEINARE, ROLLER OG TIMER
+
 CREATE TABLE Ansatt (
 	ansattid SERIAL PRIMARY KEY,
 	brukernavn char(3) UNIQUE,
@@ -11,21 +11,35 @@ CREATE TABLE Ansatt (
 	månedslønn decimal(8,2),
 	avd_id INTEGER NOT NULL,
 	prosjekt INTEGER,
-	arbeidstimer INTEGER,
-	CONSTRAINT Anvdeling_fk FOREIGN KEY (avd_id) REFERENCES Avdeling(avd_id),
-	CONSTRAINT prosjekt_fk FOREIGN KEY (prosjekt) REFERENCES Prosjekt(prosjektid),
-	CONSTRAINT arbeidstimer FOREIGN KEY (arbeidstimer) REFERENCES Prosjekt (arbeidstimer)
+	arbeidstimer INTEGER
 	
 );
 
 CREATE TABLE Avdeling(
 	avd_id SERIAL PRIMARY KEY,
 	navn varchar(30),
-	sjef_id INTEGER NOT NULL,
-	CONSTRAINT sjef_fk FOREIGN KEY (sjef_id) REFERENCES Ansatt(ansattid)
+	sjef_id INTEGER NOT NULL
+	
 );
 
 CREATE TABLE Prosjekt(
+	prosjektid SERIAL PRIMARY KEY,
+	navn varchar(30),
+	beskrivelse varchar(100)
+	
+);
+
+CREATE TABLE ProsjektAnsatt(
+	ansattid SERIAL,
+	prosjektid SERIAL,
+	arbeidstimer INTEGER,
+	CONSTRAINT ansattid FOREIGN KEY (ansattid) REFERENCES Ansatt(ansattid),
+	CONSTRAINT prosjektid FOREIGN KEY (prosjektid) REFERENCES Prosjekt(prosjektid),
+	PRIMARY KEY (ansattid, prosjektid)
 
 );
+
+ALTER TABLE Ansatt ADD CONSTRAINT Anvdeling_fk FOREIGN KEY (avd_id) REFERENCES Avdeling(avd_id);
+ALTER TABLE Ansatt ADD	CONSTRAINT prosjekt_fk FOREIGN KEY (prosjekt) REFERENCES Prosjekt(prosjektid);
+ALTER TABLE Avdeling ADD CONSTRAINT sjef_fk FOREIGN KEY (sjef_id) REFERENCES Ansatt(ansattid);
 
