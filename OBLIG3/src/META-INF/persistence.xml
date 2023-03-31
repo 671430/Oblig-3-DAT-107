@@ -11,9 +11,9 @@
 		<properties>
 		    <!--  Generelle JPA properties -->
 			<property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-			<property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://ider-database.westeurope.cloudapp.azure.com:5432/h671430"/>
-			<property name="jakarta.persistence.jdbc.user" value="h671430"/>
- 			<property name="jakarta.persistence.jdbc.password" value="pass"/>  
+			<property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://ider-database.westeurope.cloudapp.azure.com:5432/h599002"/>
+			<property name="jakarta.persistence.jdbc.user" value="599002"/>
+ 			<property name="jakarta.persistence.jdbc.password" value="DatabaseBarn38!"/>  
 			
 			<!--  EclipseLink properties -->
             <!--  Se https://wiki.eclipse.org/EclipseLink/Examples/JPA/Logging -->
